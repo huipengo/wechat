@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wechat/pages/chat/chat_model.dart';
 import 'package:wechat/pages/chat/popup_menu.dart';
+import 'package:wechat/pages/chat/search_cell.dart';
 import 'package:wechat/pages/const.dart';
 import 'package:wechat/pages/discover/discover_child_page.dart';
 import 'package:wechat/util/loading.dart';
@@ -54,14 +55,22 @@ class _ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin 
 
   Widget _buildListView() {
     return ListView.builder(
-      itemCount: _datas.length,
+      itemCount: _datas.length + 1, // 第一个显示 search
       itemBuilder: (BuildContext context, int index) {
         return _buildCellForRow(context, index);
       },
     );
   }
 
-  ListTile _buildCellForRow(BuildContext context, int index) {
+  Widget _buildCellForRow(BuildContext context, int index) {
+    if (index == 0) {
+      return SearchCell(
+        datas: _datas,
+      );
+    }
+    //保证从模型数组正确取数据!从0开始
+    index--;
+
     return ListTile(
         title: Text(_datas[index].name),
         subtitle: Container(
@@ -79,7 +88,7 @@ class _ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin 
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6.0),
             image:
-                DecorationImage(image: NetworkImage(_datas[index].imageUr)),
+                DecorationImage(image: NetworkImage(_datas[index].imageUrl)),
             color: Colors.grey[100],
           ),
         ),

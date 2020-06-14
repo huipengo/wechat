@@ -1,12 +1,12 @@
 class Chat {
-  final String imageUr;
+  final String imageUrl;
   final String name;
   final String message;
 
-  const Chat({this.imageUr, this.name, this.message});
+  const Chat({this.imageUrl, this.name, this.message});
   factory Chat.fromJson(Map json) {
     return Chat(
-      imageUr: json['imageUrl'],
+      imageUrl: json['imageUrl'],
       name: json['name'],
       message: json['message'],
     );
