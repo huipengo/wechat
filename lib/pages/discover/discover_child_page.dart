@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../const.dart';
 
 class DiscoverChildPage extends StatefulWidget {
-
   final String title;
 
   const DiscoverChildPage({Key key, this.title}) : super(key: key);

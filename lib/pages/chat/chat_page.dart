@@ -13,7 +13,8 @@ class ChatPage extends StatefulWidget {
   _ChatPageState createState() => _ChatPageState();
 }
 
-class _ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin {
+class _ChatPageState extends State<ChatPage>
+    with AutomaticKeepAliveClientMixin {
   List<Chat> _datas = [];
 
   @override
@@ -72,33 +73,32 @@ class _ChatPageState extends State<ChatPage> with AutomaticKeepAliveClientMixin 
     index--;
 
     return ListTile(
-        title: Text(_datas[index].name),
-        subtitle: Container(
-          alignment: Alignment.bottomCenter,
-          padding: EdgeInsets.only(right: 10),
-          height: 25,
-          child: Text(
-            _datas[index].message,
-            overflow: TextOverflow.ellipsis,
-          ),
+      title: Text(_datas[index].name),
+      subtitle: Container(
+        alignment: Alignment.bottomCenter,
+        padding: EdgeInsets.only(right: 10),
+        height: 25,
+        child: Text(
+          _datas[index].message,
+          overflow: TextOverflow.ellipsis,
         ),
-        leading: Container(
-          width: 44,
-          height: 44,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(6.0),
-            image:
-                DecorationImage(image: NetworkImage(_datas[index].imageUrl)),
-            color: Colors.grey[100],
-          ),
+      ),
+      leading: Container(
+        width: 44,
+        height: 44,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6.0),
+          image: DecorationImage(image: NetworkImage(_datas[index].imageUrl)),
+          color: Colors.grey[100],
         ),
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  DiscoverChildPage(title: _datas[index].name)));
-        },
-        onLongPress: () {},
-      );
+      ),
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (BuildContext context) =>
+                DiscoverChildPage(title: _datas[index].name)));
+      },
+      onLongPress: () {},
+    );
   }
 
   @override

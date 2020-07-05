@@ -41,5 +41,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>您可以分享相册中的图片、将图片保存到您的相册、或者扫描相册图片中的二维码</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>您可以分享相册中的图片、将图片保存到您的相册、或者扫描相册图片中的二维码</string>
+	<key>NSCameraUsageDescription</key>
+	<string>您可以拍摄照片分享、上传、设置头像或扫一扫</string>
 </dict>
 </plist>

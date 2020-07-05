@@ -73,19 +73,21 @@ class _SearchBarState extends State<SearchBar> {
                           ),
                         ),
                       ),
-                      _showClear ? GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _controller.clear();
-                            _onChanged('');
-                          });
-                        },
-                        child: Icon(
-                          Icons.cancel,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                      ) : Container(),
+                      _showClear
+                          ? GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _controller.clear();
+                                  _onChanged('');
+                                });
+                              },
+                              child: Icon(
+                                Icons.cancel,
+                                size: 20,
+                                color: Colors.grey,
+                              ),
+                            )
+                          : Container(),
                     ],
                   ),
                 ),

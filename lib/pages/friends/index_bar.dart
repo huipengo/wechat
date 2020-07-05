@@ -11,13 +11,13 @@ class IndexBar extends StatefulWidget {
 }
 
 int getIndex(BuildContext context, Offset globalPosition) {
-  RenderBox box = context.findRenderObject();
+  RenderBox box = context.findRenderObject() as RenderBox;
   // 获取y值
   double y = box.globalToLocal(globalPosition).dy;
   // 算出字符高度
   var itemHeight = ScreenHeight(context) / 2 / INDEX_WORDS.length;
   // 算出第几个item,并且给一个取值范围
-  int index = (y ~/ itemHeight).clamp(0, INDEX_WORDS.length - 1);
+  int index = (y ~/ itemHeight).clamp(0, INDEX_WORDS.length - 1) as int;
   return index;
 }
 
@@ -54,18 +54,18 @@ class _IndexBarState extends State<IndexBar> {
             child: _indicatorHidden
                 ? null
                 : Stack(
-              alignment: Alignment(-0.2, 0),
-              children: <Widget>[
-                Image(
-                  image: AssetImage('images/icon_bubbles.png'),
-                  width: 60,
-                ),
-                Text(
-                  _indicatorText,
-                  style: TextStyle(fontSize: 32, color: Colors.white),
-                ),
-              ],
-            ),
+                    alignment: Alignment(-0.2, 0),
+                    children: <Widget>[
+                      Image(
+                        image: AssetImage('images/icon_bubbles.png'),
+                        width: 60,
+                      ),
+                      Text(
+                        _indicatorText,
+                        style: TextStyle(fontSize: 32, color: Colors.white),
+                      ),
+                    ],
+                  ),
           ),
           GestureDetector(
             child: Container(
@@ -83,15 +83,12 @@ class _IndexBarState extends State<IndexBar> {
               _indicatorY = (1.1 + 1.1) / INDEX_WORDS.length * index - 1.1;
               _indicatorHidden = false;
 
-              setState(() {
-
-              });
+              setState(() {});
             },
             onVerticalDragDown: (DragDownDetails details) {
               int index = getIndex(context, details.globalPosition);
               widget.indexBarCallBack(INDEX_WORDS[index]);
               setState(() {
-
                 _indicatorText = INDEX_WORDS[index];
                 _indicatorY = (1.1 + 1.1) / INDEX_WORDS.length * index - 1.1;
                 _indicatorHidden = false;

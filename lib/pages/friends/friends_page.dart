@@ -10,12 +10,10 @@ class FriendsPage extends StatefulWidget {
   _FriendsPageState createState() => _FriendsPageState();
 }
 
-class _FriendsPageState extends State<FriendsPage> with AutomaticKeepAliveClientMixin {
+class _FriendsPageState extends State<FriendsPage>
+    with AutomaticKeepAliveClientMixin {
   // 字典里面放item和高度的对应数据
-  final Map _groupOffsetMap = {
-    INDEX_WORDS[0]: 0.0,
-    INDEX_WORDS[1]: 0.0
-  };
+  final Map _groupOffsetMap = {INDEX_WORDS[0]: 0.0, INDEX_WORDS[1]: 0.0};
 
   ScrollController _scrollController;
 
@@ -96,8 +94,7 @@ class _FriendsPageState extends State<FriendsPage> with AutomaticKeepAliveClient
             ),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) =>
-                      DiscoverChildPage(
+                  builder: (BuildContext context) => DiscoverChildPage(
                         title: '添加朋友',
                       )));
             },
@@ -120,7 +117,7 @@ class _FriendsPageState extends State<FriendsPage> with AutomaticKeepAliveClient
               //保证安全,是在我的字典里面的字符
               if (_groupOffsetMap[str] != null) {
                 _scrollController.animateTo(
-                  _groupOffsetMap[str], //字典中有每个字符的滚动距离,直接拿出来!
+                  _groupOffsetMap[str] as double, //字典中有每个字符的滚动距离,直接拿出来!
                   duration: Duration(microseconds: 100), curve: Curves.easeIn,
                 );
               }

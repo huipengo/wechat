@@ -31,13 +31,14 @@ Future<HttpResponse.Response> get(
       method: 'GET',
       queryParameters: queryParameters,
       receiveTimeout: receiveTimeout,
-    );
+    ) as Response;
     response = HttpResponse.Response(
         data: dioResponse.data['data'],
         statusCode: Code.SUCCESS,
         message: dioResponse.statusMessage);
   } on DioError catch (e) {
-    response = HttpResponse.Response(statusCode: Code.FAILED, message: e.message);
+    response =
+        HttpResponse.Response(statusCode: Code.FAILED, message: e.message);
   }
   return response;
 }

@@ -5,16 +5,15 @@ enum LoadState { State_Success, State_Error, State_Loading, State_Empty }
 
 ///根据不同状态来展示不同的视图
 class LoadStateLayout extends StatefulWidget {
-
   final LoadState state; //页面状态
-  final Widget successWidget;//成功视图
+  final Widget successWidget; //成功视图
   final VoidCallback errorRetry; //错误事件处理
 
   LoadStateLayout(
       {Key key,
-        this.state = LoadState.State_Loading,//默认为加载状态
-        this.successWidget,
-        this.errorRetry})
+      this.state = LoadState.State_Loading, //默认为加载状态
+      this.successWidget,
+      this.errorRetry})
       : super(key: key);
 
   @override
@@ -64,13 +63,17 @@ class _LoadStateLayoutState extends State<LoadStateLayout> {
         height: 85.0,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-            color: const Color(0xFF939393), borderRadius: BorderRadius.circular(6)),
+            color: const Color(0xFF939393),
+            borderRadius: BorderRadius.circular(6)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             CircularProgressIndicator(),
             SizedBox(height: 5.0),
-            Text('正在加载', style: TextStyle(color: const Color(0xFF212121), fontSize: 14.0),)
+            Text(
+              '正在加载',
+              style: TextStyle(color: const Color(0xFF212121), fontSize: 14.0),
+            )
           ],
         ),
       ),
@@ -91,7 +94,8 @@ class _LoadStateLayoutState extends State<LoadStateLayout> {
             width: 169,
           ),
           SizedBox(height: 12.0),
-          Text("加载失败，请重试", style: TextStyle(fontSize: 14.0, color: const Color(0xFF212121))),
+          Text("加载失败，请重试",
+              style: TextStyle(fontSize: 14.0, color: const Color(0xFF212121))),
           SizedBox(height: 5.0),
           RaisedButton(
             onPressed: widget.errorRetry,
@@ -121,7 +125,9 @@ class _LoadStateLayoutState extends State<LoadStateLayout> {
           ),
           Padding(
             padding: EdgeInsets.only(top: 15.0),
-            child: Text("暂无数据", style: TextStyle(fontSize: 16.0, color: const Color(0xFF212121))),
+            child: Text("暂无数据",
+                style:
+                    TextStyle(fontSize: 16.0, color: const Color(0xFF212121))),
           )
         ],
       ),

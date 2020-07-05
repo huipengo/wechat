@@ -14,7 +14,8 @@ class DiscoverCell extends StatefulWidget {
       @required this.image,
       this.point})
       : assert(title != null, 'title 不能为空'),
-        assert(image != null, 'image 不能为空');
+        assert(image != null, 'image 不能为空'),
+        super(key: key);
 
   @override
   _DiscoverCellState createState() => _DiscoverCellState();

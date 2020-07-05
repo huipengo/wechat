@@ -6,8 +6,8 @@ Future<List<Chat>> getChatDatas() async {
       .get('http://rap2.taobao.org:38080/app/mock/257717/api/chat/list');
   if (response.statusCode == http.Code.SUCCESS) {
     List<Chat> chatList = response.data
-        .map<Chat>((item) => Chat.fromJson(item))
-        .toList();
+        .map<Chat>((item) => Chat.fromJson(item as Map<dynamic, dynamic>))
+        .toList() as List<Chat>;
     return chatList;
   } else {
     throw Exception('${response.statusCode}');

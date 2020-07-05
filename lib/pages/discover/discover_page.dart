@@ -7,7 +7,8 @@ class DiscoverPage extends StatefulWidget {
   _DiscoverPageState createState() => _DiscoverPageState();
 }
 
-class _DiscoverPageState extends State<DiscoverPage> with AutomaticKeepAliveClientMixin {
+class _DiscoverPageState extends State<DiscoverPage>
+    with AutomaticKeepAliveClientMixin {
   Color _themeColor = WeChatThemeColor;
 
   @override
@@ -29,7 +30,9 @@ class _DiscoverPageState extends State<DiscoverPage> with AutomaticKeepAliveClie
               title: '朋友圈',
               image: 'images/friends.png',
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             DiscoverCell(
               title: '扫一扫',
               image: 'images/rich_scan.png',

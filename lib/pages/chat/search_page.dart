@@ -5,7 +5,7 @@ import 'search_bar.dart';
 class SearchPage extends StatefulWidget {
   final List<Chat> datas;
 
-  const SearchPage({this.datas});
+  const SearchPage({Key key, this.datas}) : super(key: key);
 
   @override
   _SearchPageState createState() => _SearchPageState();
@@ -88,7 +88,6 @@ class _SearchPageState extends State<SearchPage> {
         ],
       ),
     );
-    ;
   }
 
   Widget _buildCellForRow(BuildContext context, int index) {

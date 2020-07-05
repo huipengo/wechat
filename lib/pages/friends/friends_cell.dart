@@ -9,14 +9,14 @@ class FriendsCell extends StatefulWidget {
   final String imageAssets;
 
   const FriendsCell(
-      {this.imageUrl, this.name, this.groupTitle, this.imageAssets});
+      {Key key, this.imageUrl, this.name, this.groupTitle, this.imageAssets})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _FriendsCellState();
 }
 
 class _FriendsCellState extends State<FriendsCell> {
-
   Color _currentColor = Colors.white;
 
   @override
@@ -47,7 +47,12 @@ class _FriendsCellState extends State<FriendsCell> {
             padding: EdgeInsets.only(left: 10),
             height: widget.groupTitle != null ? 30 : 0,
             color: WeChatThemeColor,
-            child: widget.groupTitle != null ? Text(widget.groupTitle, style: TextStyle(color: Colors.grey),) : null,
+            child: widget.groupTitle != null
+                ? Text(
+                    widget.groupTitle,
+                    style: TextStyle(color: Colors.grey),
+                  )
+                : null,
           ),
           Container(
             color: _currentColor,
@@ -60,13 +65,17 @@ class _FriendsCellState extends State<FriendsCell> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6.0),
                       image: DecorationImage(
-                        image: widget.imageUrl != null ? NetworkImage(widget.imageUrl) : AssetImage(widget.imageAssets),
+                        image: widget.imageUrl != null
+                            ? NetworkImage(widget.imageUrl) as ImageProvider
+                            : AssetImage(widget.imageAssets),
                       ),
-                      color: Colors.grey[100]
-                  ),
+                      color: Colors.grey[100]),
                 ),
                 Container(
-                  child: Text(widget.name, style: TextStyle(fontSize: 15),),
+                  child: Text(
+                    widget.name,
+                    style: TextStyle(fontSize: 15),
+                  ),
                 ),
               ],
             ),

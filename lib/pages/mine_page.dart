@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:wechat/pages/const.dart';
 import 'package:wechat/pages/discover/discover_cell.dart';
 
@@ -9,7 +12,10 @@ class MinePage extends StatefulWidget {
   _MinePageState createState() => _MinePageState();
 }
 
-class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin {
+class _MinePageState extends State<MinePage>
+    with AutomaticKeepAliveClientMixin {
+  File _avatarFile;
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -74,66 +80,80 @@ class _MinePageState extends State<MinePage> with AutomaticKeepAliveClientMixin 
 
   @override
   bool get wantKeepAlive => true;
-}
 
-Widget _headerWidget() {
-  return Container(
-    color: Colors.white,
-    height: 200,
-    child: Container(
-      margin: EdgeInsets.only(top: 100, bottom: 20),
+  Widget _headerWidget() {
+    return Container(
+      color: Colors.white,
+      height: 200,
       child: Container(
-        margin: EdgeInsets.only(left: 20),
-        child: Row(
-          children: <Widget>[
-            Container(
-              width: 70,
-              height: 70,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                    image: AssetImage('images/icon_lufei.png'),
-                    fit: BoxFit.cover),
-              ),
-            ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.only(left: 10, top: 8, right: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      height: 35,
-                      child: Text(
-                        '路飞',
-                        style: TextStyle(fontSize: 25, color: Colors.black),
-                      ),
-                    ),
-                    Container(
-                      height: 25,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            '继承🔥之意志，成为海贼王的男人！',
-                            style: TextStyle(fontSize: 15, color: Colors.grey),
-                          ),
-                          Image(
-                            image: AssetImage('images/icon_right.png'),
-                            width: 15,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+        margin: EdgeInsets.only(top: 100, bottom: 20),
+        child: Container(
+          margin: EdgeInsets.only(left: 20),
+          child: Row(
+            children: <Widget>[
+              GestureDetector(
+                onTap: _pickImage,
+                child: Container(
+                  width: 70,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                        image: _avatarFile == null
+                            ? AssetImage('images/icon_lufei.png')
+                                as ImageProvider
+                            : FileImage(_avatarFile),
+                        fit: BoxFit.cover),
+                  ),
                 ),
               ),
-            ),
-          ],
+              Expanded(
+                child: Container(
+                  padding: EdgeInsets.only(left: 10, top: 8, right: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        height: 35,
+                        child: Text(
+                          '路飞',
+                          style: TextStyle(fontSize: 25, color: Colors.black),
+                        ),
+                      ),
+                      Container(
+                        height: 25,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              '继承🔥之意志，成为海贼王的男人！',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.grey),
+                            ),
+                            Image(
+                              image: AssetImage('images/icon_right.png'),
+                              width: 15,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
+
+  void _pickImage() async {
+    PickedFile file = await ImagePicker().getImage(source: ImageSource.gallery);
+    setState(() {
+      _avatarFile = File(file.path);
+    });
+  }
 }
 
 Widget _cameraWidget(BuildContext context) {

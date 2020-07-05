@@ -6,7 +6,7 @@ import 'search_page.dart';
 class SearchCell extends StatelessWidget {
   final List<Chat> datas;
 
-  const SearchCell({this.datas});
+  const SearchCell({Key key, this.datas}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,8 @@ class SearchCell extends StatelessWidget {
       onTapDown: (TapDownDetails details) {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (BuildContext conext) => SearchPage(
-              datas: datas,
-            )));
+                  datas: datas,
+                )));
       },
       child: Container(
         height: 44,
